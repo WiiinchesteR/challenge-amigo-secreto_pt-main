@@ -1,47 +1,56 @@
 //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
 
+// Me chamo Davi Moraes, este é o projeto amigo secreto, (One Alura).
+
+// Lista que receberá os nomes.
 let nomesNaLista = [];
 
-function exibir(tag, nome){
+// Função para exibir os nomes na tela.
+function exibirTextos(tag, nome){
     let nomes = document.querySelector(tag);
     nomes.innerHTML = nome;
 }
 
 
+// Função para o usuário adicionar os nomes na lista.
 function adicionarAmigo(){
-    let nomes = document.querySelector('input').value.trim().replace(/[^a-zA-Z0-9]/g, '');
-    limparCampo();
+    // Variável que receberá os nomes e será incluida na lista, removendo todos os espaços e números.
+    let nomes = document.querySelector('input').value.trim().replace(/[0123456789]/g, '');
+    limparCaracteres();
     
-
+    // Condicional, para valilar um campo vazio ou com espaços.
     if (nomes == ''){
         alert('Campo vazio, por favor, adicione um nome!');
     }else{
+        // Estrutura de repetoção na condicional para concatenar os nomes e imprimir na tela um abaixo do outro.
         nomesNaLista.push(nomes);
-        let nomesConcatenados = '';
-        let i = 0;
-        while (i < nomesNaLista.length){
-            nomesConcatenados += `<li>${nomesNaLista[i]}<li>`;
-            i++;
+        let nomesConcatenados = ''; // Variável vazia para concatenar os nomes.
+        let contador = 0; // Variável contadora para não entrar em loop.
+        while (contador < nomesNaLista.length){
+            nomesConcatenados += `<li>${nomesNaLista[contador]}<li>`; // tag <li> para pular linha. 
+            contador++;
         }
     
-        exibir('ul', `Lista de amigos: <br><br>${nomesConcatenados}`);
+        exibirTextos('ul', `Lista de amigos: <br><br>${nomesConcatenados}`);
     }
 }
 
 
+// Função para sortear um nome na lista.
 function sortearAmigo(){
-    let tamanhoDaLista = nomesNaLista.length;
-    let sorteio = [Math.floor(Math.random() * tamanhoDaLista)];
+    let tamanhoDaLista = nomesNaLista.length; // Tamanho da lista.
+    let sorteio = [Math.floor(Math.random() * tamanhoDaLista)]; // Método random para randomizar um índice.
 
+    // Condicional para validar o botão sortear.
     if (nomesNaLista == ''){
         alert('Você precisa adicionar pelo menos dois amigos para sortear...');
     }else{
-        exibir('ul', `Amigo secreto sorteado ==> ${nomesNaLista[sorteio]}`);
+        exibirTextos('ul', `Amigo secreto sorteado ==> ${nomesNaLista[sorteio]}`);
     }
 }
 
-
-function limparCampo(){
+// Função para limpar o campo de caracteres.
+function limparCaracteres(){
     nome = document.querySelector('input');
     nome.value = '';
 }
