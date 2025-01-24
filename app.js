@@ -9,8 +9,9 @@ function exibir(tag, nome){
 
 
 function adicionarAmigo(){
-    let nomes = document.querySelector('input').value;
+    let nomes = document.querySelector('input').value.trim().replace(/[^a-zA-Z0-9]/g, '');
     limparCampo();
+    
 
     if (nomes == ''){
         alert('Campo vazio, por favor, adicione um nome!');
